@@ -1,0 +1,195 @@
+/* Envira-North Product Assistant — Custom Styles */
+
+/* Login page: centered form over full-screen video background */
+.login-video-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.login-video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.login-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.82);
+}
+
+/* Make Chainlit containers transparent so video + white overlay shows through */
+body:has(.login-video-container) > div:not(.login-video-container),
+body:has(.login-video-container) main,
+body:has(.login-video-container) .lg\:grid-cols-2,
+body:has(.login-video-container) .lg\:grid-cols-2 > * {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Ensure login form text is visible */
+body:has(.login-video-container) label,
+body:has(.login-video-container) h1,
+body:has(.login-video-container) h2,
+body:has(.login-video-container) h3,
+body:has(.login-video-container) p,
+body:has(.login-video-container) span,
+body:has(.login-video-container) input,
+body:has(.login-video-container) button {
+    color: #1a1a1a !important;
+}
+
+body:has(.login-video-container) input {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid #ccc !important;
+}
+
+body:has(.login-video-container) form button[type="submit"],
+body:has(.login-video-container) form button[type="submit"] span,
+body:has(.login-video-container) form button[type="submit"] * {
+    background: linear-gradient(135deg, #2c3e50, #34495e) !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    font-family: 'Aptos', 'Aptos Narrow', Calibri, sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    padding: 10px 24px !important;
+    border: none !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+body:has(.login-video-container) button[type="submit"]:hover,
+body:has(.login-video-container) button[type="submit"]:hover * {
+    background: linear-gradient(135deg, #34495e, #4a6274) !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Hide Chainlit's default login page image/decoration on right half */
+.bg-muted.overflow-hidden {
+    display: none !important;
+}
+
+/* Make the login form take full width when decoration is hidden */
+.lg\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+}
+
+/* Thinking step animation */
+.cl-step .cl-step-tool-call {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Sidebar thread list styling */
+.cl-sidebar .cl-thread-list {
+    padding: 8px;
+}
+
+/* Sidebar thread titles: match response font size */
+.cl-sidebar a,
+.cl-sidebar [class*="thread"],
+.cl-sidebar [class*="Thread"],
+[class*="sidebar"] a,
+[class*="sidebar"] [class*="thread-title"],
+[class*="sidebar"] [class*="ThreadTitle"] {
+    font-family: 'Aptos', 'Aptos Narrow', Calibri, sans-serif !important;
+    font-size: 14px !important;
+}
+
+/* Response text: Aptos font, smaller size */
+.step-message-content,
+.cl-message-content,
+[class*="message-content"],
+.markdown-body,
+[class*="MessageContent"] {
+    font-family: 'Aptos', 'Aptos Narrow', Calibri, sans-serif !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+}
+
+/* Shimmer/highlight moving effect for "Searching Knowledge Base..." */
+@keyframes shimmer {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
+}
+
+/* Rotate avatar while searching */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.avatar-spinning img,
+.avatar-spinning svg,
+.avatar-spinning {
+    animation: spin 1.5s linear infinite;
+}
+
+.searching-shimmer {
+    background: linear-gradient(
+        90deg,
+        #888 0%,
+        #888 35%,
+        #d4a44a 50%,
+        #888 65%,
+        #888 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 2s linear infinite;
+    font-style: italic;
+}
+
+/* Smoother auto-scroll: keep previous messages visible */
+[class*="messages-container"],
+[class*="MessageContainer"],
+[class*="thread-messages"],
+.cl-messages {
+    scroll-behavior: smooth !important;
+    scroll-padding-bottom: 40vh !important;
+}
+
+/* Input box: match response font */
+textarea[placeholder],
+[class*="composer"] textarea,
+[class*="input"] textarea,
+.cl-textarea {
+    font-family: 'Aptos', 'Aptos Narrow', Calibri, sans-serif !important;
+    font-size: 14px !important;
+}
+
+/* Override default bullet/marker color */
+ul li::marker,
+ol li::marker,
+.markdown-body ul li::marker,
+.markdown-body ol li::marker,
+[class*="message-content"] ul li::marker,
+[class*="message-content"] ol li::marker {
+    color: rgb(37, 50, 123) !important;
+}
+
+/* Responsive: darken overlay more on small screens for readability */
+@media (max-width: 768px) {
+    .login-video-overlay {
+        background: rgba(255, 255, 255, 0.85);
+    }
+}

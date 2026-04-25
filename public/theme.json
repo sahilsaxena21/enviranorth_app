@@ -1,0 +1,20 @@
+{
+    "custom_fonts": [],
+    "variables": {
+        "light": {
+            "--font-sans": "'Inter', sans-serif",
+            "--primary": "142 70% 28%",
+            "--primary-foreground": "0 0% 100%",
+            "--background": "0 0% 100%",
+            "--foreground": "0 0% 5%",
+            "--radius": "0.75rem"
+        },
+        "dark": {
+            "--font-sans": "'Inter', sans-serif",
+            "--primary": "142 70% 40%",
+            "--primary-foreground": "0 0% 100%",
+            "--background": "0 0% 13%",
+            "--foreground": "0 0% 93%"
+        }
+    }
+}
